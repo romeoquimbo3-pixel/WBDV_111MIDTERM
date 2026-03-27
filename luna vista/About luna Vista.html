@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Luna Vista | Luxury Hotel</title>
+    <style>
+        /* =========================================
+           CSS VARIABLES (Easy to customize colors)
+           ========================================= */
+        :root {
+            --primary-color: #d4af37;   /* Gold */
+            --primary-hover: #b59021;   /* Darker Gold */
+            --bg-dark: #0f1115;         /* Very Dark Background */
+            --bg-card: #1a1d24;         /* Card Background */
+            --text-white: #ffffff;      /* Main Text */
+            --text-gray: #b0b0b0;       /* Secondary Text */
+            --border-color: #333333;    /* Border Color */
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* =========================================
+           RESET & BASE STYLES
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           HEADER SECTION
+           ========================================= */
+        header {
+            background-color: #0a0a0a;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            height: 70vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                              url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        /* =========================================
+           MAIN CONTAINER
+           ========================================= */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* =========================================
+           STORY SECTION
+           ========================================= */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .story-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        .story-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        .story-text p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        /* =========================================
+           VALUES SECTION
+           ========================================= */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .value-card {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .value-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-white);
+        }
+
+        .value-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* =========================================
+           TEAM SECTION
+           ========================================= */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .team-member h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--text-white);
+        }
+
+        .team-member span {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        /* =========================================
+           LOCATION SECTION
+           ========================================= */
+        .location-section {
+            background-color: var(--bg-card);
+            padding: 60px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .location-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        .location-section p {
+            color: var(--text-gray);
+            margin-bottom: 15px;
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background-color: #0a0a0a;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+           ========================================= */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .story-image {
+                order: -1; /* Image on top on mobile */
+            }
+
+            .location-section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About <span>Luna Vista</span></h1>
+        </div>
+    </section>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        
+        <!-- STORY SECTION -->
+        <section class="story-section">
+            <div class="section-title">
+                <h2>Our Story</h2>
+                <p>From humble beginnings to a luxury destination</p>
+            </div>
+
+            <div class="story-grid">
+                <div class="story-text">
+                    <h3>Where Dreams Begin</h3>
+                    <p>
+                        Luna Vista was founded on the belief that travel should be more than just a destination—it should be an experience. Established in 2015, we set out to create a space where the modern traveler could find peace, luxury, and inspiration.
+                    </p>
+                    <p>
+                        Our name, "Luna Vista," translates to "Moon View," reflecting our commitment to providing guests with breathtaking night skies and serene atmospheres. Every corner of our hotel is designed to inspire tranquility and wonder.
+                    </p>
+                    <p>
+                        Today, we continue to uphold our original vision, offering personalized service and unforgettable moments to every guest who walks through our doors.
+                    </p>
+                </div>
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luna Vista Lobby">
+                </div>
+            </div>
+        </section>
+
+        <!-- VALUES SECTION -->
+        <section class="values-section">
+            <div class="section-title">
+                <h2>Our Core Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">★</div>
+                    <h4>Excellence</h4>
+                    <p>We strive for perfection in every detail, from our architecture to our service, ensuring an exceptional experience for all guests.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">♥</div>
+                    <h4>Comfort</h4>
+                    <p>Your comfort is our priority. We provide premium amenities, plush furnishings, and climate-controlled environments.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔒</div>
+                    <h4>Privacy</h4>
+                    <p>We respect your need for space and discretion. Luna Vista offers a secure and private environment for your stay.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM SECTION -->
+        <section class="team-section">
+            <div class="section-title">
+                <h2>Our Leadership</h2>
+                <p>Meet the people behind Luna Vista</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="CEO">
+                    <h4>James Anderson</h4>
+                    <span>Founder & CEO</span>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Manager">
+                    <h4>Sarah Mitchell</h4>
+                    <span>General Manager</span>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Chef">
+                    <h4>Michael Chen</h4>
+                    <span>Culinary Director</span>
+                </div>
+            </div>
+        </section
+
+</body>
+</html>
