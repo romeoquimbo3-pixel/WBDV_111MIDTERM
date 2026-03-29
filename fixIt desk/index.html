@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FixIt Desk </title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>FixIt Desk</h1>
+    <p>Advanced IT Support System</p>
+</header>
+
+<!-- NAV -->
+<nav>
+    <button onclick="showSection('dashboard')">Dashboard</button>
+    <button onclick="showSection('support')">IT Support</button>
+    <button onclick="showSection('tickets')">Tickets</button>
+    <button onclick="showSection('history')">History</button>
+    <button onclick="showSection('progress')">Progress</button>
+    <button onclick="showSection('about')">About</button>
+</nav>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="active">
+    <h2>Dashboard</h2>
+    <div class="cards">
+        <div class="card">Active Tickets: <span id="activeCount">0</span></div>
+        <div class="card">Resolved Tickets: <span id="resolvedCount">0</span></div>
+        <div class="card">System Status: Online</div>
+    </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support">
+    <h2>Create Ticket</h2>
+    <input type="text" id="issue" placeholder="Enter issue">
+    <select id="priority">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+    </select>
+    <button onclick="addTicket()">Submit</button>
+</section>
+
+<!-- TICKETS -->
+<section id="tickets">
+    <h2>Active Tickets</h2>
+    <ul id="ticketList"></ul>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+    <h2>Resolved History</h2>
+    <ul id="historyList"></ul>
+</section>
+
+<!-- PROGRESS -->
+<section id="progress">
+    <h2>Progress Tracker</h2>
+    <p id="progressText">No activity yet</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2>About System</h2>
+    <p>This system helps manage IT concerns efficiently with tracking and monitoring tools.</p>
+</section>
+
+<!-- TERMINAL -->
+<section class="terminal">
+    <h2>Terminal Login</h2>
+    <div class="terminal-box">
+        <p>> Login: <input id="userInput" oninput="updateTerminal()"></p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 FixIt Desk</p>
+</footer>
+
+<script>
+let tickets = [];
+let history = [];
+
+function showSection(id){
+    document.querySelectorAll("section").forEach(sec=>{
+        sec.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
+}
+
+function addTicket(){
+    let issue = document.getElementById("issue").value;
+    let priority = document.getElementById("priority").value;
+
+    if(issue === ""){
+        alert("Enter an issue!");
+        return;
+    }
+
+    tickets.push({issue, priority});
+    document.getElementById("issue").value = "";
+
+    renderTickets();
+}
+
+function renderTickets(){
+    let list = document.getElementById("ticketList");
+    list.innerHTML = "";
+
+    tickets.forEach((t, i)=>{
+        let li = document.createElement("li");
+        li.innerHTML = `${t.issue} (${t.priority}) 
+        <button onclick="resolveTicket(${i})">Resolve</button>`;
+        list.appendChild(li);
+    });
+
+    updateDashboard();
+}
+
+function resolveTicket(index){
+    history.push(tickets[index]);
+    tickets.splice(index,1);
+    renderTickets();
+    renderHistory();
+}
+
+function renderHistory(){
+    let list = document.getElementById("historyList");
+    list.innerHTML = "";
+
+    history.forEach(t=>{
+        let li = document.createElement("li");
+        li.textContent = t.issue + " (" + t.priority + ")";
+        list.appendChild(li);
+    });
+
+    updateDashboard();
+}
+
+function updateDashboard(){
+    document.getElementById("activeCount").innerText = tickets.length;
+    document.getElementById("resolvedCount").innerText = history.length;
+    document.getElementById("progressText").innerText =
+        "Active: " + tickets.length + " | Resolved: " + history.length;
+}
+
+function updateTerminal(){
+    let val = document.getElementById("userInput").value;
+    document.querySelector(".terminal-box p").innerHTML =
+        "> Login: " + val + '<span class="cursor"></span>';
+}
+</script>
+
+</body>
+</html>
