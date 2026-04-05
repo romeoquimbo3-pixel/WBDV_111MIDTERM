@@ -1,0 +1,318 @@
+/* ==============================
+   BASIC RESET & FONT
+   ============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff; /* Clean White Background */
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==============================
+   NAVIGATION & LOGO
+   ============================== */
+.main-header {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.flex-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 28px;
+    color: #004a99; /* Trust Blue */
+}
+
+.logo h1 {
+    font-size: 20px;
+}
+
+.logo h1 .accent {
+    font-weight: 300;
+    color: #777;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.nav-bar a:hover, .nav-bar a.active {
+    color: #004a99;
+}
+
+/* ==============================
+   BUTTONS (Primary Concept Area)
+   ============================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+/* Trust-Blue: Clean, professional */
+.btn-trust-blue {
+    background-color: #004a99; /* Our primary color */
+    color: #fff;
+}
+
+.btn-trust-blue:hover {
+    background-color: #003366;
+}
+
+/* The 'Verified' badge requirement */
+.verified-reg {
+    position: relative;
+    padding-right: 40px; /* Space for the badge */
+}
+
+.verified-badge {
+    position: absolute;
+    right: 12px;
+    font-size: 16px;
+    color: #fff; /* White circle on blue button */
+}
+
+.verified-badge:hover {
+    color: #e0f0ff;
+}
+
+.btn-large {
+    padding: 15px 30px;
+    font-size: 16px;
+}
+
+.btn-secondary {
+    background-color: #f0f8ff;
+    color: #004a99;
+    border: 1px solid #004a99;
+}
+
+.btn-secondary:hover {
+    background-color: #e0f0ff;
+}
+
+.btn-secondary-outline {
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #666;
+}
+
+.btn-secondary-outline:hover {
+    border-color: #004a99;
+    color: #004a99;
+}
+
+.btn-submit {
+    background-color: #0066cc; /* Our secondary active color */
+    color: #fff;
+    width: 100%;
+    font-size: 16px;
+}
+
+/* ==============================
+   HERO & MAIN CLINIC SECTIONS
+   ============================== */
+.hero {
+    padding: 160px 0 80px; /* Account for fixed nav */
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(240,248,255,1) 100%);
+}
+
+.medical-theme {
+    /* Optional thematic background element */
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.medical-badge {
+    display: inline-block;
+    background-color: #e0f0ff;
+    color: #004a99;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.hero h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* SECTION STRUCTURES */
+.clinic-sections {
+    padding: 80px 0;
+}
+
+.card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    margin-bottom: 40px;
+}
+
+.grid-half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* SECTION HEADERS */
+.section-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.section-icon {
+    color: #0066cc;
+}
+
+.flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.availability-status {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 15px;
+}
+
+.status-on {
+    background-color: #e0fff0;
+    color: #008855;
+}
+
+/* BOOKING FORM */
+.booking-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr;
+    gap: 20px;
+    align-items: end;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.form-group select, .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* ==============================
+   FOOTER
+   ============================== */
+.main-footer {
+    padding: 60px 0 40px;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+}
+
+.main-footer p {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.verified-tag {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 20px;
+}
+
+.verified-tag i {
+    color: #008855;
+    margin-right: 5px;
+}
