@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LedgerFlow | Secure Finance</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-layer-group"></i>
+            <span>LedgerFlow</span>
+        </div>
+        <nav>
+            <button class="nav-item active" data-target="dashboard">
+                <i class="fas fa-chart-pie"></i> Dashboard
+            </button>
+            <button class="nav-item" data-target="finance">
+                <i class="fas fa-wallet"></i> Finance
+            </button>
+            <button class="nav-item" data-target="invoices">
+                <i class="fas fa-file-invoice-dollar"></i> Invoices
+            </button>
+            <button class="nav-item" data-target="clients">
+                <i class="fas fa-users"></i> Clients
+            </button>
+        </nav>
+        <div class="security-tag">
+            <i class="fas fa-shield-halved"></i>
+            <span>SSL Active</span>
+        </div>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1 id="page-title">Dashboard</h1>
+            <div class="user-controls">
+                <button class="icon-btn" id="notif-btn"><i class="far fa-bell"></i></button>
+                <div class="avatar">JD</div>
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <small>Total Balance</small>
+                <h3>$42,500.00</h3>
+            </div>
+            <div class="stat-card">
+                <small>Pending Pay</small>
+                <h3 class="text-emerald">$8,120.00</h3>
+            </div>
+        </section>
+
+        <section class="security-panel">
+            <div class="security-info">
+                <h2>Security Status</h2>
+                <p>Minimalist: High-security look with white space and two-factor auth (2FA) icons.</p>
+                <div class="auth-status" id="auth-status-box">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Two-Factor Auth (2FA) Enabled</span>
+                </div>
+            </div>
+            <div class="security-actions">
+                <div class="icon-group">
+                    <i class="fas fa-fingerprint active-icon" id="icon-1"></i>
+                    <i class="fas fa-mobile-screen active-icon" id="icon-2"></i>
+                </div>
+                <button class="main-btn" id="toggle-2fa">Disable 2FA</button>
+            </div>
+        </section>
+
+        <section class="table-container">
+            <div class="table-header">
+                <h3>Recent Activity</h3>
+                <button class="secondary-btn" id="refresh-btn">Refresh List</button>
+            </div>
+            <div class="mock-table">
+                <div class="table-row"><span>Invoicing: Apple Inc.</span> <strong>+$2,500</strong></div>
+                <div class="table-row"><span>Client Setup: Stripe</span> <strong>Complete</strong></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast hidden">Action Successful</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
