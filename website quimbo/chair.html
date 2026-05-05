@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>chair</title>
+
+<style> 
+body { background-image: 
+    url('images/bg.jpg');
+    background-size: cover; }
+
+header { background:black; color:gold; padding:15px; text-align:center; }
+
+nav { background:#333; padding:10px; text-align:right; }
+nav a, nav button {
+    color:white; margin-right:15px; background:none;
+    border:none; cursor:pointer; font-weight:bold;
+}
+
+.container { text-align:center; padding:20px; }
+
+.card {
+    background; width:220px; display:inline-block;
+    margin:15px; padding:10px; border-radius:10px;
+    box-shadow:0 0 10px gray; cursor:pointer;
+}
+
+.card img {
+    width:100%; height:150px; object-fit:cover;
+    border-radius:10px;
+}
+
+button.buy {
+    background:green; color:white; border:none;
+    padding:8px; width:100%; margin-top:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Cabinet Collection</h1>
+</header>
+
+<nav>
+<a href="index.html">HOME</a>
+<a href="cart.html">CART 🛒</a>
+<button onclick="logout()">LOG OUT</button>
+</nav>
+
+<div class="container">
+
+<div class="card" onclick="viewItem('attic chair')">
+<img src="attic.jpg">
+<h3>attic chair</h3>
+<p>₱5000</p>
+<button class="buy" onclick="addToCart(event,'attic chair',5000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('collectic chair')">
+<img src="collectic.jpg">
+<h3>collectic chair</h3>
+<p>₱15000</p>
+<button class="buy" onclick="addToCart(event,'collectic chair',15000)">Add to Cart</button>
+</div>
+<div class="card" onclick="viewItem('settee chair')">
+<img src="settee.webp">
+<h3>settee chair</h3>
+<p>₱8500</p>
+<button class="buy" onclick="addToCart(event,'settee chair',8500)">Add to Cart</button>
+</div>
+<div class="card" onclick="viewItem('knight chair')">
+<img src="knight.webp">
+<h3>knight chair</h3>
+<p>₱9000</p>
+<button class="buy" onclick="addToCart(event,'knight chair',9000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('traditional chair')">
+<img src="traditional chair.jpg">
+<h3>traditional chair</h3>
+<p>₱8000</p>
+<button class="buy" onclick="addToCart(event,'traditional chair',8000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('aesthetic chair')">
+<img src="aesthetic chair.jpg">
+<h3>aesthetic chair</h3>
+<p>₱10000</p>
+<button class="buy" onclick="addToCart(event,'aesthetic chair',10000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('Modern chair')">
+<img src="modern chair.jpg">
+<h3>modern chair</h3>
+<p>₱15000</p>
+<button class="buy" onclick="addToCart(event,'Modern chair',15000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('Classic chair')">
+<img src="classic chair.jpg">
+<h3>Classic chair</h3>
+<p>₱20000</p>
+<button class="buy" onclick="addToCart(event,'Classic chair',20000)">Add to Cart</button>
+</div>
+
+</div>
+
+<script>
+function logout(){
+    alert("Logged out!");
+    window.location.href="index.html";
+}
+
+function viewItem(name){
+    alert("Viewing: " + name);
+}
+
+function addToCart(event,name,price){
+    event.stopPropagation();
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({name:name, price:price});
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart!");
+}
+</script>
+
+</body>
+</html>

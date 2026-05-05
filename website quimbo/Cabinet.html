@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cabinet</title>
+
+<style> 
+body { background-image: 
+    url('images/bg.jpg');
+    background-size: cover; }
+
+header { background:black; color:gold; padding:15px; text-align:center; }
+
+nav { background:#333; padding:10px; text-align:right; }
+nav a, nav button {
+    color:white; margin-right:15px; background:none;
+    border:none; cursor:pointer; font-weight:bold;     
+}
+
+.container { text-align:center; padding:20px; }
+
+.card {
+    background; width:220px; display:inline-block;
+    margin:15px; padding:10px; border-radius:10px;
+    box-shadow:0 0 10px gray; cursor:pointer;
+}
+
+.card img {
+    width:100%; height:150px; object-fit:cover;
+    border-radius:10px;
+}
+
+button.buy {
+    background:green; color:white; border:none;
+    padding:8px; width:100%; margin-top:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Cabinet Collection</h1>
+</header>
+
+<nav>
+<a href="index.html">HOME</a>
+<a href="cart.html">CART 🛒</a>
+<button onclick="logout()">LOG OUT</button>
+</nav>
+
+<div class="container">
+
+<div class="card" onclick="viewItem('premium Cabinet')">
+<img src="premium.webp">
+<h3>premium Cabinet</h3>
+<p>₱3000</p>
+<button class="buy" onclick="addToCart(event,'premium Cabinet',3000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('timeless Cabinet')">
+<img src="timeless.webp">
+<h3>timeless Cabinet</h3>
+<p>₱7000</p>
+<button class="buy" onclick="addToCart(event,'timeless Cabinet',7000)">Add to Cart</button>
+</div>
+<div class="card" onclick="viewItem('crown Cabinet')">
+<img src="crown.webp">
+<h3>crown Cabinet</h3>
+<p>₱10000</p>
+<button class="buy" onclick="addToCart(event,'crown Cabinet',10000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('heritage Cabinet')">
+<img src="heritage.webp">
+<h3>heritage Cabinet</h3>
+<p>₱5500</p>
+<button class="buy" onclick="addToCart(event,'heritage Cabinet',5500)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('Wood Cabinet')">
+<img src="Wood.jpg">
+<h3>Wood Cabinet</h3>
+<p>₱5000</p>
+<button class="buy" onclick="addToCart(event,'Wood Cabinet',5000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('Cabinet aesthetic')">
+<img src="aesthetic.webp">
+<h3>Cabinet aesthetic</h3>
+<p>₱4000</p>
+<button class="buy" onclick="addToCart(event,'Cabinet aesthetic',4000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('Modern Cabinet')">
+<img src="modern.webp">
+<h3>Modern Cabinet</h3>
+<p>₱7500</p>
+<button class="buy" onclick="addToCart(event,'Modern Cabinet',7500)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('Classic Cabinet')">
+<img src="classic.webp">
+<h3>Classic Cabinet</h3>
+<p>₱6200</p>
+<button class="buy" onclick="addToCart(event,'Classic Cabinet',6200)">Add to Cart</button>
+</div>
+
+</div>
+
+<script>
+function logout(){
+    alert("Logged out!");
+    window.location.href="index.html";
+}
+
+function viewItem(name){
+    alert("Viewing: " + name);
+}
+
+function addToCart(event,name,price){
+    event.stopPropagation();
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({name:name, price:price});
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart!");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase History | Furniture Store</title>
+    <style>
+        /* CSS STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                              url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Bar */
+        header {
+            background-color: #f4f1ea; 
+            padding: 15px 5%;
+            display: flex;
+            justify-content: center;
+            border-bottom: 2px solid #ddd;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* Main Content Box */
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .history-card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .history-card h1 {
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            color: #222;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            color: #444;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Status Labels */
+        .status {
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .completed { background: #d4edda; color: #155724; }
+        .pending { background: #fff3cd; color: #856404; }
+        .cancelled { background: #f8d7da; color: #721c24; }
+
+        /* Buttons */
+        .btn-group {
+            margin-top: 30px;
+        }
+
+        .back-btn {
+            background-color: #222;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">About Us</a></li>
+                <li><a href="index.html">Product ▼</a></li>
+                <li><a href="index.html">Log In / Register ▼</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="history-card">
+            <h1>PURCHASE HISTORY</h1>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="purchase-data">
+                    </tbody>
+            </table> 
+
+            <div class="btn-group">
+                <button class="back-btn" onclick="window.history.back()">Back to Account</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const myPurchases = [
+            { id: "#ORD-9921", date: "Oct 12, 2023", item: "Traditional Chair", price: "₱8,000.00", status: "completed" },
+            { id: "#ORD-9855", date: "Nov 05, 2023", item: "Classic Cabinet", price: "₱6,200.00", status: "completed" },
+            { id: "#ORD-1002", date: "Dec 01, 2023", item: "Wood Table", price: "₱5,000.00", status: "pending" },
+            { id: "#ORD-1050", date: "Dec 15, 2023", item: "Classic Bed", price: "₱11,000.00", status: "cancelled" }
+        ];
+
+        const tableBody = document.getElementById('purchase-data');
+
+        // Function para i-display ang mga binili
+        function displayHistory() {
+            tableBody.innerHTML = myPurchases.map(order => `
+                <tr>
+                    <td><b>${order.id}</b></td>
+                    <td>${order.date}</td>
+                    <td>${order.item}</td>
+                    <td>${order.price}</td>
+                    <td><span class="status ${order.status}">${order.status}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        // Pag-load ng page, ipakita agad ang history
+        window.onload = displayHistory;
+    </script>
+
+</body>
+</html>

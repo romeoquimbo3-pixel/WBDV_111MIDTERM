@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binondo Furniture | Order Page</title>
+    <style>
+        /* CSS STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            /* Gamit ang iyong ni-reference na file name */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('binondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Top Header */
+        .main-header {
+            background-color: #0b1320; /* Dark color based on image top */
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #f4f1ea; /* Light beige from your screenshot */
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* Order Form Container */
+        .order-container {
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .order-card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 2px;
+        }
+
+        .order-card h2 {
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .price-display {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            border-left: 5px solid #333;
+        }
+
+        /* Button Styling */
+        .place-order-btn {
+            width: 100%;
+            background-color: #222;
+            color: white;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .place-order-btn:hover {
+            background-color: #555;
+        }
+
+        /* Success Message Overlay */
+        #success-msg {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 100px rgba(0,0,0,0.5);
+            text-align: center;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-header">Binondo Furniture</div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">ABOUT US</a></li>
+            <li><a href="index.html">PRODUCT ▼</a></li>
+            <li><a href="index.html">LOG IN / REGISTER ▼</a></li>
+        </ul>
+    </nav>
+
+    <div class="order-container">
+        <div class="order-card">
+            <h2>ORDER FORM</h2>
+            
+            <form id="furnitureOrderForm">
+                <div class="form-group">
+                    <label>FULL NAME</label>
+                    <input type="text" id="userName" placeholder="Romeo Ducusin Quimbo" required>
+                </div>
+
+                <div class="form-group">
+                    <label>SELECT PRODUCT</label>
+                    <select id="productSelect" onchange="updatePrice()" required>
+                        <option value="0" disabled selected>-- Choose Furniture --</option>
+                        <option value="8000">Traditional Chair - ₱8,000</option>
+                        <option value="6200">Classic Cabinet- ₱6,200</option>
+                        <option value="5000">Wood Table - ₱5,000</option>
+                        <option value="11000">Classic Bed - ₱11,000</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>QUANTITY</label>
+                    <input type="number" id="quantity" value="1" min="1" oninput="updatePrice()" required>
+                </div>
+
+                <div class="form-group">
+                    <label>DELIVERY ADDRESS</label>
+                    <textarea id="address" rows="3" placeholder="Street, Barangay, City" required></textarea>
+                </div>
+
+                <div class="price-display">
+                    TOTAL AMOUNT: <span id="totalPrice">₱0.00</span>
+                </div>
+
+                <button type="submit" class="place-order-btn">PLACE ORDER NOW</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hidden Success Message -->
+    <div id="success-msg">
+        <h2 style="color: green;">Order Successful!</h2>
+        <p style="margin: 15px 0;">Salamat sa pagtitiwala sa Binondo Furniture.</p>
+        <button class="place-order-btn" onclick="location.reload()">OK</button>
+    </div>
+
+    <script>
+        // JAVASCRIPT LOGIC
+        function updatePrice() {
+            const productPrice = document.getElementById('productSelect').value;
+            const qty = document.getElementById('quantity').value;
+            const total = productPrice * qty;
+            
+            document.getElementById('totalPrice').innerText = "₱" + total.toLocaleString();
+        }
+
+        document.getElementById('furnitureOrderForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Iwasan ang pag-refresh ng page
+            
+            // Simulating process
+            const btn = document.querySelector('.place-order-btn');
+            btn.innerText = "PROCESSING...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('success-msg').style.display = 'block';
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html

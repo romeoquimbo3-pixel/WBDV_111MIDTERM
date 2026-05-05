@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings | Binondo Furniture</title>
+    <style>
+        /* CSS STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            /* Background image reference verbatim */
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                              url('17778364438272141105140727706372_eeb9a4.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Branding Header */
+        .admin-header {
+            background-color: #0b1320;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #f4f1ea;
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        /* Settings Layout */
+        .container {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .settings-card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .settings-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .settings-header h1 {
+            letter-spacing: 3px;
+            font-size: 22px;
+            text-transform: uppercase;
+        }
+
+        /* Form Groups */
+        .setting-section {
+            margin-bottom: 30px;
+        }
+
+        .setting-section h2 {
+            font-size: 16px;
+            color: #555;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border-left: 4px solid #0b1320;
+            padding-left: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="email"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        /* Toggle Switches */
+        .toggle-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input { display: none; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px; width: 16px;
+            left: 4px; bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider { background-color: #28a745; }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* Save Button */
+        .save-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #0b1320;
+            color: white;
+            border: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .save-btn:hover { background-color: #1a2a44; }
+
+    </style>
+</head>
+<body>
+
+    <div class="admin-header">Binondo Furniture</div>
+
+    <nav>
+        <ul>
+            <li><a href="Dashboard.html">DASHBOARD</a></li>
+            <li><a href="user management.html">USER MANAGEMENT</a></li>
+            <li><a href="product.html">PRODUCT MANAGEMENT</a></li>
+            <li><a href="system settings.html">SYSTEM SETTINGS</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="settings-card">
+            <div class="settings-header">
+                <h1>SYSTEM SETTINGS</h1>
+            </div>
+
+            <form id="settingsForm">
+                <!-- General Settings -->
+                <div class="setting-section">
+                    <h2>General Configuration</h2>
+                    <div class="form-group">
+                        <label>Store Name</label>
+                        <input type="text" value="Binondo Furniture Official">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Email</label>
+                        <input type="email" value="admin@binondofurniture.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Currency Display</label>
+                        <select>
+                            <option>Philippine Peso (₱)</option>
+                            <option>US Dollar ($)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Website Preferences -->
+                <div class="setting-section">
+                    <h2>Website Preferences</h2>
+                    <div class="toggle-group">
+                        <span>Maintenance Mode</span>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <span>Allow New User Registration</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <span>Email Notifications for Orders</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="button" class="save-btn" onclick="saveSettings()">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function saveSettings() {
+            // Animating a simple "Working" feedback
+            const btn = document.querySelector('.save-btn');
+            const originalText = btn.innerText;
+            
+            btn.innerText = "SAVING...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                alert("Success: Website preferences have been updated!");
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

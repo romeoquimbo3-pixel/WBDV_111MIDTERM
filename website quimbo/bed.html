@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>bed</title>
+
+<style> 
+body { background-image: 
+    url('images/bg.jpg');
+    background-size: cover; }
+
+header { background:black; color:gold; padding:15px; text-align:center; }
+
+nav { background:#333; padding:10px; text-align:right; }
+nav a, nav button {
+    color:white; margin-right:15px; background:none;
+    border:none; cursor:pointer; font-weight:bold;
+}
+
+.container { text-align:center; padding:20px; }
+
+.card {
+    background; width:220px; display:inline-block;
+    margin:15px; padding:10px; border-radius:10px;
+    box-shadow:0 0 10px gray; cursor:pointer;
+}
+
+.card img {
+    width:100%; height:150px; object-fit:cover;
+    border-radius:10px;
+}
+
+button.buy {
+    background:green; color:white; border:none;
+    padding:8px; width:100%; margin-top:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Cabinet Collection</h1>
+</header>
+
+<nav>
+<a href="index.html">HOME</a>
+<a href="cart.html">CART 🛒</a>
+<button onclick="logout()">LOG OUT</button>
+</nav>
+
+<div class="container">
+
+<div class="card" onclick="viewItem('nature bed')">
+<img src="nature.jpg">
+<h3>nature bed</h3>
+<p>₱14000</p>
+<button class="buy" onclick="addToCart(event,'mature bed',14000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('romantic bed')">
+<img src="romantic.jpg">
+<h3>romantic bed</h3>
+<p>₱11000</p>
+<button class="buy" onclick="addToCart(event,'romantic bed',11000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('royal bed')">
+<img src="royal.webp">
+<h3>royal bed</h3>
+<p>₱15000</p>
+<button class="buy" onclick="addToCart(event,'royal bed',15000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('vintage bed')">
+<img src="vintage.webp">
+<h3>vintage bed</h3>
+<p>₱18000</p>
+<button class="buy" onclick="addToCart(event,'vintage bed',18000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('wood bed')">
+<img src="wood bed.jpg">
+<h3>wood bed</h3>
+<p>₱10000</p>
+<button class="buy" onclick="addToCart(event,'Wood bed',10000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('aesthetic bed')">
+<img src="aesthetic bed.webp">
+<h3>aesthetic bed</h3>
+<p>₱15000</p>
+<button class="buy" onclick="addToCart(event,'aesthetic bed',15000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('Modern bed')">
+<img src="modern bed.png">
+<h3>modern bed</h3>
+<p>₱25000</p>
+<button class="buy" onclick="addToCart(event,'Modern bed',25000)">Add to Cart</button>
+</div>
+
+<div class="card" onclick="viewItem('Classic bed')">
+<img src="classic bed.jpg">
+<h3>Classic bed</h3>
+<p>₱11000</p>
+<button class="buy" onclick="addToCart(event,'Classic bed',11000)">Add to Cart</button>
+</div>
+
+</div>
+
+<script>
+function logout(){
+    alert("Logged out!");
+    window.location.href="index.html";
+}
+
+function viewItem(name){
+    alert("Viewing: " + name);
+}
+
+function addToCart(event,name,price){
+    event.stopPropagation();
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({name:name, price:price});
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart!");
+}
+</script>
+
+</body>
+</html>
