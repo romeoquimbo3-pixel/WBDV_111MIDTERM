@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Furniture Bodega Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background-image: url(binondo.jpg);
+    background-repeat: no-repeat;   
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+ 
+}
+
+/* LOGIN BOX */
+
+.login-container{
+    width:350px;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo h1{
+    color:brown;
+    font-size:32px;
+}
+
+.logo p{
+    color:gray;
+    margin-top:5px;
+}
+
+/* INPUTS */
+
+.input-box{
+    margin-bottom:18px;
+}
+
+.input-box input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    outline:none;
+    font-size:15px;
+}
+
+.input-box input:focus{
+    border-color:brown;
+}
+
+/* BUTTON */
+
+.login-btn{
+    width:100%;
+    padding:13px;
+    background:brown;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    background:#5c2d0c;
+}
+
+/* EXTRA */
+
+.extra{
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.extra a{
+    color:brown;
+    text-decoration:none;
+}
+
+.extra a:hover{
+    text-decoration:underline;
+}
+
+</style>
+</head>
+<body>
+
+<div class="login-container">
+
+    <div class="logo">
+        <h1>Furniture Bodega</h1>
+        <p>Login to your account</p>
+    </div>
+
+    <form onsubmit="login(event)">
+
+        <div class="input-box">
+            <input type="text" id="username" placeholder="user:admin" required>
+        </div>
+
+        <div class="input-box">
+            <input type="password" id="password" placeholder="Password:1234" required>
+        </div>
+
+        <button type="submit" class="login-btn">
+            LOGIN
+        </button>
+
+    </form>
+
+    <div class="extra">
+        <p>Don't have an account?
+            <a href="#">Register</a>
+        </p>
+    </div>
+
+</div>
+
+<script>
+
+function login(event){
+
+    event.preventDefault();
+
+    let username =
+    document.getElementById("username").value;
+
+    let password =
+    document.getElementById("password").value;
+
+    // SAMPLE LOGIN
+    if(username === "admin" && password === "1234"){
+
+        alert("Login Successful!");
+
+        // SAVE LOGIN
+        localStorage.setItem("loggedIn","true");
+
+        // REDIRECT TO WEBSITE
+        window.location.href = "index.html";
+
+    }else{
+
+        alert("checkout!");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

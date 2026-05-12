@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard | Binondo Furniture</title>
+    <style>
+        /* CSS STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            /* Background image reference verbatim */
+            background-image: url('binondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Top Brand Header */
+        .brand-header {
+            background-color: #0b1320; /* Dark navy/black from screenshot */
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #f4f1ea; /* Light beige from screenshot */
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #ccc;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* Dashboard Content */
+        .dashboard-container {
+            padding: 60px 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .welcome-text {
+            color: white;
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Grid for Admin Cards */
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .admin-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 50px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-10px);
+            background-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .admin-card h2 {
+            font-size: 22px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .admin-card p {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Analytics Section */
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            text-align: center;
+        }
+
+        .stat-item h3 { font-size: 24px; }
+        .stat-item span { font-size: 12px; text-transform: uppercase; opacity: 0.8; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header & Nav -->
+    <div class="brand-header">Binondo Furniture</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">ABOUT US</a></li>
+            <li><a href="index.html">PRODUCT ▼</a></li>
+            <li><a href="index.html">LOG IN / REGISTER ▼</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard-container">
+        <h1 class="welcome-text">Super Admin Dashboard</h1>
+
+        <!-- Working Stats (JavaScript can update these) -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <h3 id="stat-sales">₱124,500</h3>
+                <span>Monthly Sales</span>
+            </div>
+            <div class="stat-item">
+                <h3 id="stat-orders">48</h3>
+                <span>Pending Orders</span>
+            </div>
+            <div class="stat-item">
+                <h3 id="stat-users">1,204</h3>
+                <span>Total Users</span>
+            </div>
+        </div>
+
+        <!-- Navigation Cards -->
+        <div class="admin-grid">
+            <a href="user management.html" class="admin-card" onclick="navAlert('User Management')">
+                <h2>USER MANAGEMENT</h2>
+                <p>View and edit user permissions</p>
+            </a>
+            <a href="product.html" class="admin-card" onclick="navAlert('Product Management')">
+                <h2>PRODUCT MANAGEMENT</h2>
+                <p>Add, update, or remove furniture items</p>
+            </a>
+            <a href="sales report.html" class="admin-card" onclick="navAlert('Sales Report')">
+                <h2>SALES REPORT</h2>
+                <p>Monitor revenue and transactions</p>
+            </a>
+            <a href="system settings.html" class="admin-card" onclick="navAlert('System Settings')">
+                <h2>SYSTEM SETTINGS</h2>
+                <p>Configure website preferences</p>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        // JAVASCRIPT FOR FUNCTIONALITY
+        function navAlert(page) {
+            alert("Navigating to: " + page);
+            // Sa totoong setup, pwede mong gamitin ito:
+            // window.location.href = page.toLowerCase().replace(" ", "-") + ".html";
+        }
+
+        // Simulating Live Updates
+        setInterval(() => {
+            const sales = document.getElementById('stat-sales');
+            let currentSales = parseInt(sales.innerText.replace('₱', '').replace(',', ''));
+            currentSales += Math.floor(Math.random() * 100);
+            sales.innerText = '₱' + currentSales.toLocaleString();
+        }, 5000);
+    </script>
+
+</body>
+</html>

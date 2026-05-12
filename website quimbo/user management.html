@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin | User Management</title>
+    <style>
+        /* CSS STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            /* Ginamit ang image reference para sa background */
+            background-image: url('binondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Header section base sa iyong image */
+        .admin-header {
+            background-color: #0b1320;
+            color: white;
+            padding: 20px;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Nav Bar */
+        nav {
+            background-color: #f4f1ea;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .management-card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 1000px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .management-card h1 {
+            text-align: center;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            color: #222;
+            text-transform: uppercase;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+            color: #444;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Action Buttons */
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .edit-btn { background-color: #007bff; color: white; }
+        .delete-btn { background-color: #dc3545; color: white; }
+        
+        .role-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            background: #eee;
+        }
+
+        .admin-role { background: #ffeeba; color: #856404; }
+
+    </style>
+</head>
+<body>
+
+    <div class="admin-header">
+        <span class="brand-name">Binondo Furniture</span>
+        <small>SUPER ADMIN PANEL</small>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="index.html">ABOUT US</a></li>
+            <li><a href="product.html">PRODUCT ▼</a></li>
+            <li><a href="index.html ">LOG IN / REGISTER ▼</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="management-card">
+            <h1>USER MANAGEMENT</h1>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <!-- JavaScript will load users here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Sample Data para sa mga Users
+        let users = [
+            { id: "101", name: "Juan Dela Cruz", email: "juan@email.com", role: "User", status: "Active" },
+            { id: "102", name: "Maria Clara", email: "maria@email.com", role: "User", status: "Active" },
+            { id: "103", name: "Pedro Penduko", email: "pedro@email.com", role: "Admin", status: "Active" },
+            { id: "104", name: "Simoun Ibarra", email: "simoun@email.com", role: "User", status: "Inactive" }
+        ];
+
+        const tableBody = document.getElementById('userTableBody');
+
+        // Function para i-display ang table
+        function loadUsers() {
+            tableBody.innerHTML = "";
+            users.forEach((user, index) => {
+                const row = `
+                    <tr id="row-${index}">
+                        <td>#${user.id}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td><span class="role-badge ${user.role === 'Admin' ? 'admin-role' : ''}">${user.role}</span></td>
+                        <td>${user.status}</td>
+                        <td>
+                            <button class="action-btn edit-btn" onclick="editUser(${index})">Edit</button>
+                            <button class="action-btn delete-btn" onclick="deleteUser(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Function para mag-delete (Working)
+        function deleteUser(index) {
+            if(confirm("Sigurado ka bang gusto mong i-delete si " + users[index].name + "?")) {
+                users.splice(index, 1);
+                loadUsers();
+            }
+        }
+
+        // Function para mag-edit (Working Simple Logic)
+        function editUser(index) {
+            let newName = prompt("Baguhin ang pangalan:", users[index].name);
+            if (newName) {
+                users[index].name = newName;
+                loadUsers();
+            }
+        }
+
+        // Initial Load
+        window.onload = loadUsers;
+    </script>
+</body>
+</html>

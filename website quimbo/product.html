@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management | Binondo Furniture</title>
+    <style>
+        /* CSS STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            /* Background image reference verbatim */
+            background-image: url('binondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Header section base sa Binondo Furniture theme */
+        .admin-header {
+            background-color: #0b1320;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Nav Bar */
+        nav {
+            background-color: #f4f1ea;
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .management-card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 1100px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 2px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .card-header h1 {
+            letter-spacing: 2px;
+            font-size: 22px;
+            text-transform: uppercase;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .add-btn { background-color: #28a745; color: white; }
+        .edit-btn { background-color: #007bff; color: white; margin-right: 5px; }
+        .delete-btn { background-color: #dc3545; color: white; }
+        .btn:hover { opacity: 0.8; }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            color: #444;
+            font-size: 14px;
+        }
+
+        tr:hover { background-color: #f9f9f9; }
+
+        .product-img-placeholder {
+            width: 60px;
+            height: 60px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-header">Binondo Furniture</div>
+
+    <nav>
+        <ul>
+            <li><a href="Dashboard.html">DASHBOARD</a></li>
+            <li><a href="user management.html">USER MANAGEMENT</a></li>
+            <li><a href="product.html">PRODUCT MANAGEMENT</a></li>
+            <li><a href="index.html">LOGOUT</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="management-card">
+            <div class="card-header">
+                <h1>PRODUCT MANAGEMENT</h1>
+                <button class="btn add-btn" onclick="addProduct()">+ Add New Product</button>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <!-- Products will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Sample Data para sa mga Furniture
+        let products = [
+            { name: "Traditional;", category: "Chairs", price: "₱8,000", stock: 12 },
+            { name: "wood Table", category: "Tables", price: "₱5,000", stock: 5 },
+            { name: "modern Cabinet", category: "Storage", price: "7,500", stock: 8 },
+            { name: "classic bed", category: "bed", price: "₱11,000", stock: 25 }
+        ];
+
+        const tableBody = document.getElementById('productTableBody');
+
+        // Function para i-display ang mga produkto
+        function loadProducts() {
+            tableBody.innerHTML = "";
+            products.forEach((product, index) => {
+                const row = `
+                    <tr>
+                        <td><div class="product-img-placeholder">IMG</div></td>
+                        <td><b>${product.name}</b></td>
+                        <td>${product.category}</td>
+                        <td>${product.price}</td>
+                        <td>${product.stock} pcs</td>
+                        <td>
+                            <button class="btn edit-btn" onclick="editProduct(${index})">Edit</button>
+                            <button class="btn delete-btn" onclick="deleteProduct(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Add Product Function
+        function addProduct() {
+            let name = prompt("Enter Product Name:");
+            let price = prompt("Enter Price (e.g. ₱5,000):");
+            if (name && price) {
+                products.push({ name: name, category: "Uncategorized", price: price, stock: 0 });
+                loadProducts();
+            }
+        }
+
+        // Edit Product Function
+        function editProduct(index) {
+            let newName = prompt("Edit Product Name:", products[index].name);
+            if (newName) {
+                products[index].name = newName;
+                loadProducts();
+            }
+        }
+
+        // Delete Product Function
+        function deleteProduct(index) {
+            if (confirm("Gusto mo bang i-delete ang " + products[index].name + "?")) {
+                products.splice(index, 1);
+                loadProducts();
+            }
+        }
+
+        // Initial Load
+        window.onload = loadProducts;
+    </script>
+</body>
+</html>

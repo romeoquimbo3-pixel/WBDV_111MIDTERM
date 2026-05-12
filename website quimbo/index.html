@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binondo Furniture's | Classic Designs for Modern Homes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+
+<p style="background-image: url('binondo.jpg');">
+    <header>
+        <div class="header-banner">
+            <h1>binondo Furniture's</h1>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="#" class="nav-item active" onclick="showPage('home')">HOME</a></li>
+                <li><a href="#" class="nav-item" onclick="showPage('about')">ABOUT US</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-item dropdown-toggle">PRODUCT ▼</a>
+                    <ul class="dropdown-content">
+                        <li><a href="Cabinet.html">CABINET</a></li>
+                        <li><a href="chair.html">CHAIR</a></li>
+                        <li><a href="bed.html">BED</a></li>
+                        <li><a href="table.html">TABLE</a></li>
+                    </ul>
+                </li>
+                
+                <li class="dropdown"> 
+                    <a href="#" class="nav-item dropdown-toggle">LOG IN / REGISTER ▼</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#" onclick="showPage('user-dashboard')">USER</a></li>
+                        <li><a href="#" onclick="showPage('admin-dashboard')">SUPER ADMIN</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="#" class="nav-item" onclick="showPage('contact')">CONTACT US</a></li>
+                <li><a href="#" class="nav-item" onclick="showPage('order')">ORDER</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        
+        <section id="home-page" class="content-page active">
+            <div class="welcome-box">
+                <h2>Welcome to Binondo Furniture's</h2>
+                <p>Discover our exquisite collection of hand-crafted furniture.</p>
+                
+                <div class="placeholder-grid">
+                    <div id="cabinet-gallery" class="photo-box cabinet-photo">
+                        <span>Cabinet</span>
+                    </div>
+                    <div id="chair-gallery" class="photo-box chair-photo">
+                        <span>Chair</span>
+                    </div>
+                    <div id="bed-gallery" class="photo-box bed-photo">
+                        <span>Bed</span>
+                    </div>
+                    <div id="table-gallery" class="photo-box table-photo">
+                        <span>Table</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-page" class="content-page">
+            <div class="info-container">
+                <h2>Our Binondo furniture's</h2>
+                <p>Binondo Furniture's began as a small family workshop with a commitment to quality and craftsmanship. Over the decades, we have blended traditional Filipino furniture-making techniques with modern aesthetic sensibilities.</p>
+                <p>Every piece we create is a testament to our dedication to durability, style, and functional beauty. We believe that fine furniture should be an accessible luxury, enhancing the comfort and warmth of your home.</p>
+            </div>
+        </section>
+
+        <section id="contact-page" class="content-page">
+            <div class="contact-container">
+                <h2>Contact Us</h2>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit" class="cta-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="order-page" class="content-page">
+            <div class="order-container">
+                <h2>Shopping Cart (Sample Order)</h2>
+                <div class="cart-items">
+                    <p>Add sample items from the home gallery...</p>
+                </div>
+                <button class="cta-btn checkout-btn">Checkout</button>
+            </div>
+        </section>
+
+        <section id="user-dashboard-page" class="content-page dashboard-panel">
+            <h2>User Account</h2>
+            <div class="dashboard-grid">
+                <a href="Purchase history.html" class="db-item">PURCHASE HISTORY</a>
+                <a href="order.html" class="db-item">ORDER</a>
+                <a href="account manage.html" class="db-item">ACCOUNT MANAGE</a>
+                <a href="#" class="db-item log-out" onclick="logout()">LOG OUT</a>
+            </div>
+        </section>
+
+        <section id="admin-dashboard-page" class="content-page dashboard-panel">
+            <h2>Super Admin Control Panel</h2>
+            <div class="dashboard-grid">
+                <a href="user management.html" class="db-item">USER MANAGEMENT</a>
+                <a href="Dashboard.html" class="db-item">DASHBOARD</a>
+                <a href="product.html" class="db-item">PRODUCT MANAGEMENT</a>
+                <a href="index.html" class="db-item log-out" onclick="logout()">LOG OUT</a>
+            </div>
+        </section>
+
+    </main>
+
+  
+
+    <script src="script.js"></script>
+</body>
+</html>

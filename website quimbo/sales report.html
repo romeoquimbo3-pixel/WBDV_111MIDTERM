@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report | Binondo Furniture</title>
+    <style>
+        /* CSS STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            /* Background image reference verbatim */
+            background-image: url('binondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Dark Header */
+        .admin-header {
+            background-color: #0b1320;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Light Beige Nav */
+        nav {
+            background-color: #f4f1ea;
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        /* Main Container */
+        .container {
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Sales Card */
+        .report-card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 2px;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .report-header h1 {
+            letter-spacing: 3px;
+            font-size: 22px;
+            text-transform: uppercase;
+        }
+
+        /* Analytics Overview */
+        .analytics-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .stat-box h3 { font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 10px; }
+        .stat-box p { font-size: 20px; font-weight: bold; color: #333; }
+        .total-revenue { color: #28a745 !important; }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .status-paid { color: #28a745; font-weight: bold; }
+
+        /* Print Button */
+        .print-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            float: right;
+        }
+
+        .print-btn:hover { background-color: #555; }
+
+        @media print {
+            nav, .print-btn, .admin-header { display: none; }
+            body { background: white; }
+            .report-card { box-shadow: none; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-header">Binondo Furniture</div>
+
+    <nav>
+        <ul>
+            <li><a href="Dashboard.html">DASHBOARD</a></li>
+            <li><a href="user management.html">USER MANAGEMENT</a></li>
+            <li><a href="product.html">PRODUCT MANAGEMENT</a></li>
+            <li><a href="sales report.html">SALES REPORT</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="report-card">
+            <div class="report-header">
+                <h1>SALES REPORT</h1>
+                <p style="font-size: 12px; color: #666; margin-top: 5px;">Monitor revenue and transactions</p>
+            </div>
+
+            <!-- Dashboard Style Stats -->
+            <div class="analytics-summary">
+                <div class="stat-box">
+                    <h3>Total Transactions</h3>
+                    <p id="totalCount">0</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Items Sold</h3>
+                    <p id="itemsSold">0</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Total Revenue</h3>
+                    <p id="totalRevenue" class="total-revenue">₱0.00</p>
+                </div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="salesTableBody">
+                    <!-- Transactions load here -->
+                </tbody>
+            </table>
+
+            <button class="print-btn" onclick="window.print()">Download Report (PDF)</button>
+        </div>
+    </div>
+
+    <script>
+        // Sample Transaction Data
+        const salesData = [
+            { date: "2026-05-01", id: "BF-9901", customer: "Juan Dela Cruz", product: "Classic Chair", amount: 2000, status: "Paid" },
+            { date: "2026-05-02", id: "BF-9902", customer: "Maria Clara", product: "wood Table", amount: 5000, status: "Paid" },
+            { date: "2026-05-03", id: "BF-9903", customer: "Pedro Penduko", product: "aesthetic bed", amount: 15000, status: "Paid" },
+            { date: "2026-05-04", id: "BF-9904", customer: "Simoun Ibarra", product: "modern cabinet", amount: 7500, status: "Paid" }
+        ];
+
+        function loadSalesReport() {
+            const tableBody = document.getElementById('salesTableBody');
+            let totalRev = 0;
+            let totalItems = salesData.length;
+
+            tableBody.innerHTML = "";
+
+            salesData.forEach(sale => {
+                totalRev += sale.amount;
+                const row = `
+                    <tr>
+                        <td>${sale.date}</td>
+                        <td><b>${sale.id}</b></td>
+                        <td>${sale.customer}</td>
+                        <td>${sale.product}</td>
+                        <td>₱${sale.amount.toLocaleString()}</td>
+                        <td class="status-paid">${sale.status}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+
+            // Update Summary Stats
+            document.getElementById('totalCount').innerText = totalItems;
+            document.getElementById('itemsSold').innerText = totalItems;
+            document.getElementById('totalRevenue').innerText = "₱" + totalRev.toLocaleString();
+        }
+
+        // Initialize report
+        window.onload = loadSalesReport;
+    </script>
+</body>
+</html>
